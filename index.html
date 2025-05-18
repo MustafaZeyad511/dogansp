@@ -1,293 +1,204 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salary Calculator</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Salary Calculator - Dogan Voyages</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+    margin: 0; padding: 20px;
+    color: #1f2937;
+  }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
+  }
+  h1 {
+    color: #2563eb;
+    text-align: center;
+  }
+  label {
+    font-weight: 600;
+    display: block;
+    margin: 15px 0 5px;
+  }
+  select, input[type="number"] {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #cbd5e1;
+  }
+  button {
+    background-color: #2563eb;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #1e40af;
+  }
+  .print-preview {
+    margin-top: 30px;
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
+    display: none;
+  }
+  .print-preview.visible {
+    display: block;
+  }
+  .company-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .company-header h1 {
+    margin: 0;
+    color: #2563eb;
+  }
+  .company-header h2 {
+    margin: 5px 0 0;
+    font-weight: 600;
+  }
+  .info-item, .salary-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+    font-size: 1rem;
+  }
+  .salary-item.total {
+    font-weight: 700;
+    border-top: 2px solid #2563eb;
+    padding-top: 10px;
+    margin-top: 15px;
+  }
+  .salary-item.net {
+    font-weight: 700;
+    color: #16a34a;
+    margin-top: 10px;
+  }
+  .salary-item .label {
+    font-weight: 600;
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="salary-calculator">
-            <div class="header">
-                <img src="Dogan Logo.png" alt="Dogan Voyages Logo" class="logo">
-                <h1>Calculate Salary</h1>
-            </div>
-            <h2>Salary Calculator</h2>
-        </div>
-        
-        <div class="main-content">
-            <div class="employee-list">
-                <h3>Employee List</h3>
-                <select id="employeeSelect" class="employee-select">
-                    <option value="">Select Employee</option>
-                    <option value="Abdallah Sheikh Durra">Abdallah Sheikh Durra</option>
-                    <option value="Youssef Bouaziz">Youssef Bouaziz</option>
-                    <option value="Nawel BENSOLTANE">Nawel BENSOLTANE</option>
-                    <option value="Nifin Sleiman Mahmoud">Nifin Sleiman Mahmoud</option>
-                    <option value="Mohamed Amine KOUKI">Mohamed Amine KOUKI</option>
-                    <option value="Faisal OBEIDAT">Faisal OBEIDAT</option>
-                    <option value="Ayub SAYEH">Ayub SAYEH</option>
-                </select>
-            </div>
+  <div class="container">
+    <h1>Dogan Voyages - Salary Calculator</h1>
 
-            <div class="period-section">
-                <div class="input-group">
-                    <label for="month">Month:</label>
-                    <select id="month" class="month-select">
-                        <option value="January">January</option>
-                        <option value="February">February</option>
-                        <option value="March">March</option>
-                        <option value="April">April</option>
-                        <option value="May">May</option>
-                        <option value="June">June</option>
-                        <option value="July">July</option>
-                        <option value="August">August</option>
-                        <option value="September">September</option>
-                        <option value="October">October</option>
-                        <option value="November">November</option>
-                        <option value="December">December</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="year">Year:</label>
-                    <select id="year" class="year-select">
-                        <option value="2025">2025</option>
-                        <option value="2024">2024</option>
-                        <option value="2023">2023</option>
-                        <option value="2022">2022</option>
-                    </select>
-                </div>
-            </div>
+    <label for="employeeSelect">Select Employee</label>
+    <select id="employeeSelect">
+      <option value="">-- Select Employee --</option>
+      <option value="Abdallah Sheikh Durra">Abdallah Sheikh Durra</option>
+      <option value="Youssef Bouaziz">Youssef Bouaziz</option>
+      <option value="Nawel BENSOLTANE">Nawel BENSOLTANE</option>
+      <option value="Nifin Sleiman Mahmoud">Nifin Sleiman Mahmoud</option>
+      <option value="Mohamed Amine KOUKI">Mohamed Amine KOUKI</option>
+      <option value="Faisal OBEIDAT">Faisal OBEIDAT</option>
+      <option value="Ayub SAYEH">Ayub SAYEH</option>
+    </select>
 
-            <div class="input-section">
-                <div class="input-group">
-                    <label for="hours">Hours Worked:</label>
-                    <input type="number" id="hours" class="input-field" min="0" placeholder="Enter hours worked">
-                </div>
-                <div class="input-group">
-                    <label for="rate">Hourly Rate:</label>
-                    <input type="number" id="rate" class="input-field" min="0" placeholder="Enter hourly rate">
-                </div>
-            </div>
+    <label for="month">Select Month</label>
+    <select id="month">
+      <option value="January">January</option>
+      <option value="February">February</option>
+      <option value="March">March</option>
+      <option value="April">April</option>
+      <option value="May" selected>May</option>
+      <option value="June">June</option>
+      <option value="July">July</option>
+      <option value="August">August</option>
+      <option value="September">September</option>
+      <option value="October">October</option>
+      <option value="November">November</option>
+      <option value="December">December</option>
+    </select>
 
-            <div class="result-section">
-                <div class="print-controls">
-                    <button id="printButton" class="print-button">Print Salary Slip</button>
-                </div>
-                <h3>Gross Salary ($)</h3>
-                <div class="salary-display">
-                    <span id="grossSalary">0.00</span> $
-                </div>
+    <label for="year">Select Year</label>
+    <select id="year">
+      <option value="2023">2023</option>
+      <option value="2024">2024</option>
+      <option value="2025" selected>2025</option>
+      <option value="2026">2026</option>
+    </select>
 
-                <div class="deductions-section">
-                    <div class="deduction-item">
-                        <span>Contingencies (4.83%)</span>
-                        <span id="contingencies">0.00</span>
-                    </div>
-                    <div class="deduction-item">
-                        <span>Training (0.10%)</span>
-                        <span id="training">0.00</span>
-                    </div>
-                    <div class="deduction-item">
-                        <span>Unemployment (1.55%)</span>
-                        <span id="unemployment">0.00</span>
-                    </div>
-                    <div class="deduction-item">
-                        <span>IRPF Tax</span>
-                        <span id="irpf">0.00</span>
-                    </div>
-                    <div class="deduction-item total">
-                        <span>Total Deductions</span>
-                        <span id="totalDeductions">0.00</span>
-                    </div>
-                    <div class="deduction-item net">
-                        <span>Net Salary</span>
-                        <span id="netSalary">0.00</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <label for="hours">Hours Worked</label>
+    <input type="number" id="hours" min="0" value="160" />
+
+    <label for="rate">Hourly Rate ($)</label>
+    <input type="number" id="rate" min="0" step="0.01" value="10.93" />
+
+    <button id="calculateBtn">Calculate Salary</button>
+
+    <!-- Print Preview -->
     <div class="print-preview" id="printPreview">
-        <style>
-          body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f9f9f9;
-            padding: 30px;
-            color: #333;
-          }
-          .print-preview {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #fff;
-            border-radius: 10px;
-            padding: 25px 35px;
-            box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
-          }
-          .company-header {
-            text-align: center;
-            margin-bottom: 25px;
-          }
-          .company-header h1 {
-            font-size: 28px;
-            margin-bottom: 5px;
-            color: #004aad;
-          }
-          .company-header h2 {
-            font-size: 20px;
-            font-weight: 600;
-            color: #1e293b;
-          }
-
-          .employee-info {
-            margin-bottom: 25px;
-          }
-          .info-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 16px;
-          }
-          .info-item .label {
-            font-weight: 600;
-            color: #1e293b;
-          }
-
-          .salary-details {
-            border-top: 2px solid #ddd;
-            padding-top: 20px;
-          }
-          .salary-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #e2e8f0;
-            font-size: 16px;
-          }
-          .salary-item:last-child {
-            border-bottom: none;
-          }
-          .salary-item .label {
-            font-weight: 600;
-          }
-
-          /* ألوان الخصومات */
-          .salary-item:nth-child(4) { color: #dc2626; } /* contingencies */
-          .salary-item:nth-child(5) { color: #b45309; } /* training */
-          .salary-item:nth-child(6) { color: #dc2626; } /* unemployment */
-          .salary-item:nth-child(7) { color: #ca8a04; } /* IRPF */
-
-          /* المجموع الكلي */
-          .salary-item.total {
-            font-weight: 700;
-            color: #b91c1c;
-            font-size: 18px;
-            border-top: 2px solid #b91c1c;
-            margin-top: 15px;
-          }
-
-          /* الراتب الصافي */
-          .salary-item.net {
-            font-weight: 700;
-            color: #16a34a;
-            font-size: 18px;
-            margin-top: 10px;
-          }
-
-          /* الرموز $ */
-          .salary-item span:last-child::after {
-            content: " $";
-          }
-
-          @media print {
-            body {
-              background: white;
-              padding: 0;
-            }
-            .print-preview {
-              box-shadow: none;
-              border-radius: 0;
-              padding: 0;
-              max-width: 100%;
-            }
-          }
-        </style>
-        <div class="company-header">
-        <img src="Dogan Logo.png" alt="Dogan Voyages Logo" class="logo">
+      <div class="company-header">
+        <h1>Dogan Voyages</h1>
         <h2>Salary Slip</h2>
-    </div>
-        <div class="employee-info">
-            <div class="info-item">
-                <span class="label">Employee Name:</span>
-                <span id="printEmployeeName">-</span>
-            </div>
-            <div class="info-item">
-                <span class="label">Month:</span>
-                <select id="printMonth" class="month-select">
-                    <option value="January">January</option>
-                    <option value="February">February</option>
-                    <option value="March">March</option>
-                    <option value="April">April</option>
-                    <option value="May">May</option>
-                    <option value="June">June</option>
-                    <option value="July">July</option>
-                    <option value="August">August</option>
-                    <option value="September">September</option>
-                    <option value="October">October</option>
-                    <option value="November">November</option>
-                    <option value="December">December</option>
-                </select>
-            </div>
-            <div class="info-item">
-                <span class="label">Year:</span>
-                <select id="printYear" class="year-select">
-                    <option value="2025">2025</option>
-                    <option value="2024">2024</option>
-                    <option value="2023">2023</option>
-                    <option value="2022">2022</option>
-                </select>
-            </div>
+      </div>
+      <div class="employee-info">
+        <div class="info-item">
+          <span class="label">Employee Name:</span>
+          <span id="printEmployeeName">-</span>
         </div>
-        <div class="salary-details">
-            <div class="salary-item">
-                <span class="label">Gross Salary:</span>
-                <span class="value" id="printGrossSalary">1748.80</span>
-            </div>
-            <div class="salary-item">
-                <span class="label">Hours Worked:</span>
-                <span class="value" id="printHours">160</span>
-            </div>
-            <div class="salary-item">
-                <span class="label">Hourly Rate:</span>
-                <span class="value" id="printRate">10.93</span>
-            </div>
-            <div class="salary-item">
-                <span class="label">Contingencies (4.83%):</span>
-                <span class="value" id="printContingencies">84.4670</span>
-            </div>
-            <div class="salary-item">
-                <span class="label">Training (0.10%):</span>
-                <span class="value" id="printTraining">1.7488</span>
-            </div>
-            <div class="salary-item">
-                <span class="label">Unemployment (1.55%):</span>
-                <span class="value" id="printUnemployment">27.1064</span>
-            </div>
-            <div class="salary-item">
-                <span class="label">IRPF Tax:</span>
-                <span class="value" id="printIRPF">451.95</span>
-            </div>
-            <div class="salary-item total">
-                <span class="label">Total Deductions:</span>
-                <span class="value" id="printTotalDeductions">565.2722</span>
-            </div>
-            <div class="salary-item net">
-                <span class="label">Net Salary:</span>
-                <span class="value" id="printNetSalary">1183.5278</span>
-            </div>
+        <div class="info-item">
+          <span class="label">Period:</span>
+          <span id="printMonthText">-</span> <span id="printYearText">-</span>
         </div>
+      </div>
+      <div class="salary-details">
+        <div class="salary-item">
+          <span class="label">Gross Salary:</span>
+          <span id="printGrossSalary">0.00</span> $
+        </div>
+        <div class="salary-item">
+          <span class="label">Hours Worked:</span>
+          <span id="printHours">0</span>
+        </div>
+        <div class="salary-item">
+          <span class="label">Hourly Rate:</span>
+          <span id="printRate">0.00</span> $
+        </div>
+        <div class="salary-item">
+          <span class="label">Contingencies (4.83%):</span>
+          <span id="printContingencies">0.00</span> $
+        </div>
+        <div class="salary-item">
+          <span class="label">Training (0.10%):</span>
+          <span id="printTraining">0.00</span> $
+        </div>
+        <div class="salary-item">
+          <span class="label">Unemployment (1.55%):</span>
+          <span id="printUnemployment">0.00</span> $
+        </div>
+        <div class="salary-item">
+          <span class="label">IRPF Tax (451.95):</span>
+          <span id="printIRPF">451.95</span> $
+        </div>
+        <div class="salary-item total">
+          <span class="label">Total Deductions:</span>
+          <span id="printTotalDeductions">0.00</span> $
+        </div>
+        <div class="salary-item net">
+          <span class="label">Net Salary:</span>
+          <span id="printNetSalary">0.00</span> $
+        </div>
+      </div>
     </div>
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
